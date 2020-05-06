@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.desktop{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-column: repeat(12, 1fr);
+}
+
+.browser{
+    
+}
