@@ -19,12 +19,11 @@ body {
 .browser  img{
     width: 100%;
     margin: 0;
-    
 }
+
 img {
     width: 95%;
-    margin: 10px;
-    
+    margin: 10px; 
 }
 
 hr {
@@ -70,6 +69,7 @@ h6 {
 .iconsWrapper {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .icon {
@@ -206,6 +206,10 @@ h6 {
     visibility: hidden;
     background-color: white;
 }
+.browserContentWrapper{
+    width: 100%;
+    height: 100%;
+}
 
 .notConnected{
     padding: 5vmin;
@@ -216,17 +220,22 @@ h6 {
     margin-left: 5vmin;
 }
 
-.notConnected > div > div> h3:hover{
+.notConnected > div > h3:hover{
 
     text-decoration: underline;
 }
-.notConnected > div > div> h3:active{
+.notConnected > div > h3:active{
     color: grey;
 }
 
-.inConnect{   
+.inConnect{
+    display: flex;
+    flex-wrap: wrap;
 }
-    
+
+.floatUser, .floatPw{
+    transition-duration: 4s;
+}
 
 
 .menuBar {

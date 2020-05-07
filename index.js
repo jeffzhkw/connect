@@ -79,7 +79,6 @@ compIcon.addEventListener("click", function(){
    
 })
 
-
 connectIcon.addEventListener("click", function (){
     if (internet){
         alert("I've connected to the internet")
@@ -182,9 +181,46 @@ function loadWeb(){
     let wrapper = document.createElement("DIV");
     wrapper.classList.add("inConnect");
 
+    setInterval(function(){
+            newPair = addaPair()
+        
+        toNewPos(newPair[0])
+        toNewPos(newPair[1])
+    }, 500)
 
+    outerWrapper.appendChild(wrapper)
+    browserContentWrapper.appendChild(outerWrapper)
+
+    
+    function toNewPos(elem){
+        // Get viewport dimensions (remove the dimension of the div)
+        var h = browserContentWrapper.offsetHeight
+        var w = browserContentWrapper.offsetWidth
+        console.log(h,w)
+        var nh = Math.floor(Math.random() * h);
+        var nw = Math.floor(Math.random() * w);
+        
+        elem.style.transform = "translate("+nh+"px,"+ nw+"px)"
+        
+    }
+    function addaPair(){
+        let floatUser = document.createElement("DIV");
+        floatUser.classList.add("floatUser");
+        floatUser.appendChild(document.createTextNode("Your Username: "+username));
+
+        let floatPw = document.createElement("DIV");
+        floatPw.classList.add("floatPw");
+        floatPw.appendChild(document.createTextNode("Your Password: "+pw));
+        
+        wrapper.appendChild(floatUser)
+        wrapper.appendChild(floatPw) 
+        return [floatUser, floatPw]
+    }
+    
+    
 }
 function addMalware(){
+    iconLst
 
 }
 function notFound(){
@@ -207,10 +243,17 @@ function notFound(){
     let diaBut = document.createElement("button");
     diaBut.innerHTML = "Diagnose Connection Problems"
     diaBut.setAttribute("id", "diagnose");
+    diaBut.addEventListener("click", function (){
+        alert("The difference between stupidity and genius is that genius has its limits.")
+        alert("open Connect Broadband Connection")     
+    })
 
     let hThree = document.createElement("H3");
     hThree.appendChild(document.createTextNode("More information"));
-
+    hThree.addEventListener("click", function(){
+        setInterval(function(){ wrapper.appendChild(document.createTextNode("Useless Information.......")) }, 300);
+        
+    })
     innerWrapper.appendChild(hTwo)
     innerWrapper.appendChild(diaBut)
     innerWrapper.appendChild(hThree)
