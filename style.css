@@ -206,6 +206,26 @@ h6 {
     visibility: hidden;
     background-color: white;
 }
+
+.notConnected{
+    padding: 5vmin;
+
+}
+
+.notConnected > div{
+    margin-left: 5vmin;
+}
+
+.notConnected > div > div> h3:hover{
+
+    text-decoration: underline;
+}
+.notConnected > div > div> h3:active{
+    color: grey;
+}
+
+.inConnect{   
+}
     
 
 
@@ -266,4 +286,18 @@ h6 {
     font-size: 1.8vmin;
     transition-duration: 2s;
 
+}
+
+.symbol{
+    width: 4vh;
+    height: 4vh;
+    border: 1px dotted black;
+}
+
+.below{
+    transform: translateY(50px);
+}
+
+.right{
+    transform: translate(50px, 50px);
 }

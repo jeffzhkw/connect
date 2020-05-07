@@ -4,6 +4,7 @@ var username = document.getElementById("username").value;
 var pw = document.getElementById("pw").value;
 const appLst = document.getElementsByClassName("appLst")[0]
 const status = document.getElementById("status")
+var browserContentWrapper = document.getElementsByClassName("browserContentWrapper")[0]
 
 var internet = false;
 
@@ -26,9 +27,29 @@ connBut.addEventListener("click", function(){
 
 
 })
-
+var clickedTime = 0
 cancelBut.addEventListener("click", function(){
-   
+
+    if(clickedTime == 0){
+        cancelBut.style.transform += "translateY("+ 50 +"px)"
+        clickedTime+=1
+    }
+    else if (clickedTime == 1){
+        cancelBut.style.transform += "translateX("+ 10 +"vw)"
+        clickedTime+=1
+    }
+    else if (clickedTime == 5){
+        alert("Why would I hit cancel button if I want to connect to internet")
+        document.getElementsByClassName("buttons")[0].removeChild(this)
+    }
+    else{
+        cancelBut.style.transform += "translateX("+ 10 +"vw)"
+        clickedTime+=1
+    }
+
+
+    
+    
 })
 
 iconLst = document.getElementsByClassName("icon")
@@ -85,6 +106,7 @@ browserIcon.addEventListener("click", function (){
 
 browserClose.addEventListener("click", function(){
     browser.style.visibility = "hidden";
+    clearBrowser("notConnected")
     destroyApp()
 })
 
@@ -120,27 +142,92 @@ function destroyApp(){
     appLst.removeChild(appLst.childNodes[1])
 
 }
-function showConnected(){
-    console.log("In show connected")
+function notification(){
     let notify = document.createElement("DIV");
     notify.classList.add("notifyConnected");
     notify.innerText = "Internet Connected"
     status.insertBefore(notify, status.childNodes[0])
-    myVar = setTimeout(function(){
+    setTimeout(function(){
         notify.style.opacity = 0;
+        
     }, 3000)
+}
+
+function removeNotification(){
+    setTimeout(function(){
+        status.removeChild(status.childNodes[0])
+    },5000)
+}
+function showConnected(){
+    console.log("In show connected")
+    notification()
+    removeNotification()
+    setTimeout(function(){
+        let square = document.createElement("DIV");
+        square.classList.add("symbol");
+        status.insertBefore(square, status.childNodes[0])
+        square.addEventListener("mouseover", function(){
+            notification()
+            removeNotification()
+        })
+    },5000)
+
 
 }
 
 function loadWeb(){
-    
+    let outerWrapper = document.createElement("DIV");
+    outerWrapper.setAttribute("id", "contentRoot");
+
+    let wrapper = document.createElement("DIV");
+    wrapper.classList.add("inConnect");
+
 
 }
 function addMalware(){
 
 }
 function notFound(){
+    let outerWrapper = document.createElement("DIV");
+    outerWrapper.setAttribute("id", "contentRoot");
+    
+    let wrapper = document.createElement("DIV");
+    wrapper.classList.add("notConnected");
 
+    let p = document.createElement("P");
+    p.appendChild(document.createTextNode("Internet Explorer cannot display the webpage"));
+
+    let hRuler = document.createElement("hr");
+
+    let innerWrapper = document.createElement("DIV");
+
+    let hTwo = document.createElement("H2");
+    hTwo.appendChild(document.createTextNode("What you can try:"));
+
+    let diaBut = document.createElement("button");
+    diaBut.innerHTML = "Diagnose Connection Problems"
+    diaBut.setAttribute("id", "diagnose");
+
+    let hThree = document.createElement("H3");
+    hThree.appendChild(document.createTextNode("More information"));
+
+    innerWrapper.appendChild(hTwo)
+    innerWrapper.appendChild(diaBut)
+    innerWrapper.appendChild(hThree)
+
+    wrapper.appendChild(p)
+    wrapper.appendChild(hRuler)
+    wrapper.appendChild(innerWrapper)
+
+    outerWrapper.appendChild(wrapper)
+    browserContentWrapper.appendChild(outerWrapper)
+    
+}
+
+function clearBrowser(){
+    el = document.getElementById("contentRoot")
+    console.log(el)
+    browserContentWrapper.removeChild(el)
 }
 function noImpl(){
     alert("Why I would click that")
