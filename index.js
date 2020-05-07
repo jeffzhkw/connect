@@ -220,7 +220,29 @@ function loadWeb(){
     
 }
 function addMalware(){
-    iconLst
+    var counter = 0
+    iconWrapper = document.getElementsByClassName("iconsWrapper")[0]
+
+    function newIcon(num){
+        let iconElem = document.createElement("DIV");
+        iconElem.classList.add("icon");
+
+        let oof = document.createElement("DIV");
+
+        let hSix = document.createElement("H6");
+        hSix.classList.add("title");
+        hSix.appendChild(document.createTextNode("Malware #" + num));
+
+        iconElem.appendChild(oof)
+        iconElem.appendChild(hSix)
+
+        iconWrapper.appendChild(iconElem)
+    }
+
+    setInterval(function(){
+        newIcon(counter)
+        counter+=1
+    }, 1000)
 
 }
 function notFound(){
